@@ -27,14 +27,13 @@
 {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor greenColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     
-    //戻るボタンを生成
-    UIButton *btnBack = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    btnBack.frame = CGRectMake(200, 100, 100, 50);
-    [btnBack setTitle:@"戻るボタン" forState:UIControlStateNormal];
-    [btnBack addTarget:self action:@selector(clickBtnBack) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:btnBack];
+    //テーブルビューを生成
+    UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.bounds
+                                                          style:UITableViewStylePlain];
+    [self.view addSubview:tableView];
+    
 }
 
 //戻るボタンクリック
