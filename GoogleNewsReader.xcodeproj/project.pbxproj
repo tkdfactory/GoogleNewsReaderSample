@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC9B8D21187EAE9300B54940 /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9B8D20187EAE9300B54940 /* News.m */; };
+		BC9B8D24187EAFF700B54940 /* NewsLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9B8D23187EAFF700B54940 /* NewsLoader.m */; };
 		BCE28E621859C3940046E35B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCE28E611859C3940046E35B /* Foundation.framework */; };
 		BCE28E641859C3940046E35B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCE28E631859C3940046E35B /* CoreGraphics.framework */; };
 		BCE28E661859C3940046E35B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCE28E651859C3940046E35B /* UIKit.framework */; };
@@ -34,6 +36,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BC9B8D1F187EAE9300B54940 /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = News.h; sourceTree = "<group>"; };
+		BC9B8D20187EAE9300B54940 /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
+		BC9B8D22187EAFF700B54940 /* NewsLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsLoader.h; sourceTree = "<group>"; };
+		BC9B8D23187EAFF700B54940 /* NewsLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsLoader.m; sourceTree = "<group>"; };
 		BCE28E5E1859C3940046E35B /* GoogleNewsReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoogleNewsReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCE28E611859C3940046E35B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		BCE28E631859C3940046E35B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -80,6 +86,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BC9B8D1D187EAE0800B54940 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				BCE28E901859C4520046E35B /* ConditionViewController.h */,
+				BCE28E911859C4520046E35B /* ConditionViewController.m */,
+				BCE28E931859C8EA0046E35B /* NewsListViewController.h */,
+				BCE28E941859C8EA0046E35B /* NewsListViewController.m */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		BC9B8D1E187EAE4800B54940 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BC9B8D1F187EAE9300B54940 /* News.h */,
+				BC9B8D20187EAE9300B54940 /* News.m */,
+				BC9B8D22187EAFF700B54940 /* NewsLoader.h */,
+				BC9B8D23187EAFF700B54940 /* NewsLoader.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		BCE28E551859C3940046E35B = {
 			isa = PBXGroup;
 			children = (
@@ -113,12 +141,10 @@
 		BCE28E671859C3940046E35B /* GoogleNewsReader */ = {
 			isa = PBXGroup;
 			children = (
+				BC9B8D1E187EAE4800B54940 /* Model */,
+				BC9B8D1D187EAE0800B54940 /* ViewController */,
 				BCE28E701859C3940046E35B /* AppDelegate.h */,
 				BCE28E711859C3940046E35B /* AppDelegate.m */,
-				BCE28E901859C4520046E35B /* ConditionViewController.h */,
-				BCE28E911859C4520046E35B /* ConditionViewController.m */,
-				BCE28E931859C8EA0046E35B /* NewsListViewController.h */,
-				BCE28E941859C8EA0046E35B /* NewsListViewController.m */,
 				BCE28E731859C3940046E35B /* Images.xcassets */,
 				BCE28E681859C3940046E35B /* Supporting Files */,
 			);
@@ -249,8 +275,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC9B8D21187EAE9300B54940 /* News.m in Sources */,
 				BCE28E721859C3940046E35B /* AppDelegate.m in Sources */,
 				BCE28E6E1859C3940046E35B /* main.m in Sources */,
+				BC9B8D24187EAFF700B54940 /* NewsLoader.m in Sources */,
 				BCE28E921859C4520046E35B /* ConditionViewController.m in Sources */,
 				BCE28E951859C8EA0046E35B /* NewsListViewController.m in Sources */,
 			);
@@ -455,6 +483,7 @@
 				BCE28E8C1859C3940046E35B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BCE28E8D1859C3940046E35B /* Build configuration list for PBXNativeTarget "GoogleNewsReaderTests" */ = {
 			isa = XCConfigurationList;
@@ -463,6 +492,7 @@
 				BCE28E8F1859C3940046E35B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

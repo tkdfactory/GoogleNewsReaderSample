@@ -9,7 +9,9 @@
 #import "ConditionViewController.h"
 #import "NewsListViewController.h"
 
-@interface ConditionViewController ()
+@interface ConditionViewController (){
+    UITextField *tfKeyword;
+}
 
 @end
 
@@ -40,7 +42,7 @@
     [self.view addSubview:btnSearch];
     
     //テキストフィールドを生成
-    UITextField *tfKeyword = [[UITextField alloc] initWithFrame:CGRectMake(30, 100, 200, 50)];
+    tfKeyword = [[UITextField alloc] initWithFrame:CGRectMake(30, 100, 200, 50)];
     tfKeyword.borderStyle = UITextBorderStyleRoundedRect;
     tfKeyword.textColor = [UIColor blackColor];
     tfKeyword.placeholder = @"キーワード";
@@ -68,6 +70,8 @@
 {
     //次の画面のインスタンスを生成
     NewsListViewController *vcNewsList = [[NewsListViewController alloc] init];
+    //キーワードを次の画面へ渡す
+    vcNewsList.keyword = tfKeyword.text;
     //ナビゲーションコントローラーにプッシュ！
     [self.navigationController pushViewController:vcNewsList animated:YES];
 }

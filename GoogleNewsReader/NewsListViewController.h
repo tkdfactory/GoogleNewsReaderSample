@@ -10,4 +10,6 @@
 
 @interface NewsListViewController : UIViewController
 
+@property (nonatomic, retain) NSString* keyword;
+
 @end

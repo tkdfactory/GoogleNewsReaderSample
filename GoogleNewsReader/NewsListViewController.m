@@ -7,6 +7,8 @@
 //
 
 #import "NewsListViewController.h"
+#import "NewsLoader.h"
+#import "News.h"
 
 @interface NewsListViewController ()
 
@@ -33,6 +35,14 @@
     UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.bounds
                                                           style:UITableViewStylePlain];
     [self.view addSubview:tableView];
+    
+    
+    //APIを試しに叩いてみる
+    NSArray *newsArray = [NewsLoader load:self.keyword pageNum:1];
+    
+    for (News *news in newsArray) {
+        NSLog(@"%@",news.title);
+    }
     
 }
 
