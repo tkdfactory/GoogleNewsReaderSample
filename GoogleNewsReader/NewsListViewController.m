@@ -10,7 +10,9 @@
 #import "NewsLoader.h"
 #import "News.h"
 
-@interface NewsListViewController ()
+@interface NewsListViewController (){
+    NSArray *newsArray;
+}
 
 @end
 
@@ -34,16 +36,60 @@
     //テーブルビューを生成
     UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.bounds
                                                           style:UITableViewStylePlain];
+    tableView.delegate = self;
+    tableView.dataSource = self;
+    
     [self.view addSubview:tableView];
     
     
-    //APIを試しに叩いてみる
-    NSArray *newsArray = [NewsLoader load:self.keyword pageNum:1];
+    //APIを叩いてニュースを取得する
+    newsArray = [NewsLoader load:self.keyword pageNum:1];
     
-    for (News *news in newsArray) {
-        NSLog(@"%@",news.title);
+}
+
+//セクションごとの行数を返す
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (newsArray==nil) {
+        return 0;
     }
     
+    return newsArray.count;
+}
+
+//セルを生成
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //cellをキャッシュするときのキー
+    static NSString* cellId = @"aaa";
+    
+    //cellがキャッシュされていれば、再利用する。
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    if(cell == nil) {
+        //cellがなければインスタンスを生成する
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellId];
+    }
+    
+    //このrowで表示するニュース
+    News *news = [newsArray objectAtIndex:indexPath.row];
+    
+    //セルの中身をセット
+    cell.textLabel.text = news.title;
+    cell.detailTextLabel.text = news.content;
+    cell.detailTextLabel.numberOfLines = 5;
+    //画像
+    if (news.imageUrl != nil) {
+        NSData* data = [NSData dataWithContentsOfURL:news.imageUrl];
+        cell.imageView.image = [[UIImage alloc] initWithData:data];
+    }
+    
+    return cell;
+}
+
+//行の高さを返す
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 150;
 }
 
 //戻るボタンクリック

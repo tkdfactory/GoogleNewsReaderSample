@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NewsListViewController : UIViewController
+@interface NewsListViewController : UIViewController <UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, retain) NSString* keyword;
 
