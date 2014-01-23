@@ -23,6 +23,7 @@
 		BCE28E871859C3940046E35B /* GoogleNewsReaderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE28E861859C3940046E35B /* GoogleNewsReaderTests.m */; };
 		BCE28E921859C4520046E35B /* ConditionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE28E911859C4520046E35B /* ConditionViewController.m */; };
 		BCE28E951859C8EA0046E35B /* NewsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE28E941859C8EA0046E35B /* NewsListViewController.m */; };
+		BCEEA7891891236200E86C62 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCEEA7881891236200E86C62 /* DetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,8 @@
 		BCE28E911859C4520046E35B /* ConditionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConditionViewController.m; sourceTree = "<group>"; };
 		BCE28E931859C8EA0046E35B /* NewsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsListViewController.h; sourceTree = "<group>"; };
 		BCE28E941859C8EA0046E35B /* NewsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsListViewController.m; sourceTree = "<group>"; };
+		BCEEA7871891236200E86C62 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		BCEEA7881891236200E86C62 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +96,8 @@
 				BCE28E911859C4520046E35B /* ConditionViewController.m */,
 				BCE28E931859C8EA0046E35B /* NewsListViewController.h */,
 				BCE28E941859C8EA0046E35B /* NewsListViewController.m */,
+				BCEEA7871891236200E86C62 /* DetailViewController.h */,
+				BCEEA7881891236200E86C62 /* DetailViewController.m */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -281,6 +286,7 @@
 				BC9B8D24187EAFF700B54940 /* NewsLoader.m in Sources */,
 				BCE28E921859C4520046E35B /* ConditionViewController.m in Sources */,
 				BCE28E951859C8EA0046E35B /* NewsListViewController.m in Sources */,
+				BCEEA7891891236200E86C62 /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

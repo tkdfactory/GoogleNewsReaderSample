@@ -9,6 +9,7 @@
 #import "NewsListViewController.h"
 #import "NewsLoader.h"
 #import "News.h"
+#import "DetailViewController.h"
 
 @interface NewsListViewController (){
     NSArray *newsArray;
@@ -97,6 +98,20 @@
 {
     //ナビゲーションコントローラーに戻れと指示を出す
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+//セル選択
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    News *news = [newsArray objectAtIndex:indexPath.row];
+    
+    NSLog(@"%@",news.title);
+    
+    
+    DetailViewController *vcDetail = [[DetailViewController alloc] init];
+    vcDetail.url = news.url;
+    
+    [self.navigationController pushViewController:vcDetail animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
