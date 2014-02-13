@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		BC9B8D21187EAE9300B54940 /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9B8D20187EAE9300B54940 /* News.m */; };
 		BC9B8D24187EAFF700B54940 /* NewsLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9B8D23187EAFF700B54940 /* NewsLoader.m */; };
+		BCAF61AC18A3A5FB00250260 /* SafariActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = BCAF61AB18A3A5FB00250260 /* SafariActivity.m */; };
 		BCE28E621859C3940046E35B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCE28E611859C3940046E35B /* Foundation.framework */; };
 		BCE28E641859C3940046E35B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCE28E631859C3940046E35B /* CoreGraphics.framework */; };
 		BCE28E661859C3940046E35B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCE28E651859C3940046E35B /* UIKit.framework */; };
@@ -41,6 +42,8 @@
 		BC9B8D20187EAE9300B54940 /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
 		BC9B8D22187EAFF700B54940 /* NewsLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsLoader.h; sourceTree = "<group>"; };
 		BC9B8D23187EAFF700B54940 /* NewsLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsLoader.m; sourceTree = "<group>"; };
+		BCAF61AA18A3A5FB00250260 /* SafariActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SafariActivity.h; sourceTree = "<group>"; };
+		BCAF61AB18A3A5FB00250260 /* SafariActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SafariActivity.m; sourceTree = "<group>"; };
 		BCE28E5E1859C3940046E35B /* GoogleNewsReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoogleNewsReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCE28E611859C3940046E35B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		BCE28E631859C3940046E35B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -92,6 +95,7 @@
 		BC9B8D1D187EAE0800B54940 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				BCAF61A918A3A5B700250260 /* Activity */,
 				BCE28E901859C4520046E35B /* ConditionViewController.h */,
 				BCE28E911859C4520046E35B /* ConditionViewController.m */,
 				BCE28E931859C8EA0046E35B /* NewsListViewController.h */,
@@ -111,6 +115,15 @@
 				BC9B8D23187EAFF700B54940 /* NewsLoader.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		BCAF61A918A3A5B700250260 /* Activity */ = {
+			isa = PBXGroup;
+			children = (
+				BCAF61AA18A3A5FB00250260 /* SafariActivity.h */,
+				BCAF61AB18A3A5FB00250260 /* SafariActivity.m */,
+			);
+			name = Activity;
 			sourceTree = "<group>";
 		};
 		BCE28E551859C3940046E35B = {
@@ -286,6 +299,7 @@
 				BC9B8D24187EAFF700B54940 /* NewsLoader.m in Sources */,
 				BCE28E921859C4520046E35B /* ConditionViewController.m in Sources */,
 				BCE28E951859C8EA0046E35B /* NewsListViewController.m in Sources */,
+				BCAF61AC18A3A5FB00250260 /* SafariActivity.m in Sources */,
 				BCEEA7891891236200E86C62 /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -12,7 +12,10 @@
 #import "DetailViewController.h"
 
 @interface NewsListViewController (){
-    NSArray *newsArray;
+    NSMutableArray *newsArray;
+    UITableView *tableView;
+    int pageNum;
+    UIRefreshControl *refreshControl;
 }
 
 @end
@@ -35,16 +38,22 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     //テーブルビューを生成
-    UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.bounds
+    tableView = [[UITableView alloc] initWithFrame:self.view.bounds
                                                           style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
     
     [self.view addSubview:tableView];
     
+    //UIRefreshControl
+    refreshControl = [[UIRefreshControl alloc] init];
+    [tableView addSubview:refreshControl];
+    [refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
     
     //APIを叩いてニュースを取得する
-    newsArray = [NewsLoader load:self.keyword pageNum:1];
+    pageNum = 1;
+    newsArray = [[NSMutableArray alloc] init];
+    [newsArray addObjectsFromArray:[NewsLoader load:self.keyword pageNum:pageNum]];
     
 }
 
@@ -59,7 +68,7 @@
 }
 
 //セルを生成
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //cellをキャッシュするときのキー
     static NSString* cellId = @"aaa";
@@ -82,6 +91,8 @@
     if (news.imageUrl != nil) {
         NSData* data = [NSData dataWithContentsOfURL:news.imageUrl];
         cell.imageView.image = [[UIImage alloc] initWithData:data];
+    }else{
+        cell.imageView.image = nil;
     }
     
     return cell;
@@ -112,6 +123,33 @@
     vcDetail.url = news.url;
     
     [self.navigationController pushViewController:vcDetail animated:YES];
+}
+
+//もっと見る
+- (void)tableView:(UITableView *)aTableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row >= newsArray.count - 1) {
+        //ページを１つ増やす
+        pageNum++;
+        //APIを叩いてニュースリストに追加
+        [newsArray addObjectsFromArray:[NewsLoader load:self.keyword pageNum:pageNum]];
+        //テーブルビューを再描画
+        [tableView reloadData];
+    }
+}
+
+//再読み込み
+- (void)refresh
+{
+    //ページ番号を戻す
+    pageNum = 1;
+    //ニュースのリストも再作成
+    newsArray = [[NSMutableArray alloc] init];
+    //ニュースを読み込む
+    [newsArray addObjectsFromArray:[NewsLoader load:self.keyword pageNum:pageNum]];
+    
+    //クルクルを止める
+    [refreshControl endRefreshing];
 }
 
 - (void)didReceiveMemoryWarning

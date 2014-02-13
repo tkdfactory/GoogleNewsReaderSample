@@ -7,6 +7,7 @@
 //
 
 #import "DetailViewController.h"
+#import "SafariActivity.h"
 
 @interface DetailViewController (){
     UIWebView *webView;
@@ -61,6 +62,12 @@ int const TOOL_BAR_HEIGHT = 48;
                                    target:self
                                    action:@selector(clickBtnReload)];
     
+    //シェアボタン
+    UIBarButtonItem *btnShare = [[UIBarButtonItem alloc]
+                                 initWithBarButtonSystemItem:UIBarButtonSystemItemAction
+                                 target:self
+                                 action:@selector(clickBtnShare)];
+    
     //スペース
     UIBarButtonItem *space = [[UIBarButtonItem alloc]
                               initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
@@ -68,7 +75,7 @@ int const TOOL_BAR_HEIGHT = 48;
                               action:nil];
     
     //ボタンの配列を生成
-    NSArray *btnArray = [NSArray arrayWithObjects:btnBack, space, btnForward, space, btnReload, space, nil];
+    NSArray *btnArray = [NSArray arrayWithObjects:btnBack, space, btnForward, space, btnReload, space, btnShare, nil];
     toolbar.items = btnArray;
     
     //NSURLRequestを生成
@@ -100,6 +107,21 @@ int const TOOL_BAR_HEIGHT = 48;
 -(void)clickBtnReload
 {
     [webView reload];
+}
+
+//シェア
+- (void)clickBtnShare
+{
+    NSArray *activityItems = @[self.url];
+    
+    SafariActivity *safariActivity = [[SafariActivity alloc] init];
+    safariActivity.url = self.url;
+    
+    UIActivityViewController *activityView = [[UIActivityViewController alloc]
+                                              initWithActivityItems:activityItems
+                                              applicationActivities:@[safariActivity]];
+    
+    [self presentViewController:activityView animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning
