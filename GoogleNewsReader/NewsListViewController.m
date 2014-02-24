@@ -16,6 +16,9 @@
     UITableView *tableView;
     int pageNum;
     UIRefreshControl *refreshControl;
+    
+    dispatch_queue_t queueGlobal;
+    dispatch_queue_t queueMain;
 }
 
 @end
@@ -55,6 +58,10 @@
     newsArray = [[NSMutableArray alloc] init];
     [newsArray addObjectsFromArray:[NewsLoader load:self.keyword pageNum:pageNum]];
     
+    //重い処理をするキュー
+    queueGlobal = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    //画面の処理をするキュー
+    queueMain = dispatch_get_main_queue();
 }
 
 //セクションごとの行数を返す
@@ -89,8 +96,14 @@
     cell.detailTextLabel.numberOfLines = 5;
     //画像
     if (news.imageUrl != nil) {
-        NSData* data = [NSData dataWithContentsOfURL:news.imageUrl];
-        cell.imageView.image = [[UIImage alloc] initWithData:data];
+        dispatch_async(queueGlobal, ^{
+            NSData* data = [NSData dataWithContentsOfURL:news.imageUrl];
+            
+            dispatch_async(queueMain, ^{
+                cell.imageView.image = [[UIImage alloc] initWithData:data];
+                [cell layoutSubviews];
+            });
+        });
     }else{
         cell.imageView.image = nil;
     }
@@ -129,12 +142,18 @@
 - (void)tableView:(UITableView *)aTableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row >= newsArray.count - 1) {
-        //ページを１つ増やす
-        pageNum++;
-        //APIを叩いてニュースリストに追加
-        [newsArray addObjectsFromArray:[NewsLoader load:self.keyword pageNum:pageNum]];
-        //テーブルビューを再描画
-        [tableView reloadData];
+        
+        dispatch_async(queueGlobal, ^{
+            //ページを１つ増やす
+            pageNum++;
+            //APIを叩いてニュースリストに追加
+            [newsArray addObjectsFromArray:[NewsLoader load:self.keyword pageNum:pageNum]];
+            
+            dispatch_async(queueMain, ^{
+                //テーブルビューを再描画
+                [tableView reloadData];
+            });
+        });
     }
 }
 

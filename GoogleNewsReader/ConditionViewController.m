@@ -48,6 +48,9 @@
     tfKeyword.placeholder = @"キーワード";
     tfKeyword.clearButtonMode = UITextFieldViewModeAlways;
     
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    tfKeyword.text = [ud stringForKey:@"keyword"];
+    
     [self.view addSubview:tfKeyword];
     
     //UIViewの説明
@@ -72,6 +75,11 @@
     NewsListViewController *vcNewsList = [[NewsListViewController alloc] init];
     //キーワードを次の画面へ渡す
     vcNewsList.keyword = tfKeyword.text;
+    
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    [ud setObject:tfKeyword.text forKey:@"keyword"];
+    [ud synchronize];//すぐ反映させる場合
+    
     //ナビゲーションコントローラーにプッシュ！
     [self.navigationController pushViewController:vcNewsList animated:YES];
 }
